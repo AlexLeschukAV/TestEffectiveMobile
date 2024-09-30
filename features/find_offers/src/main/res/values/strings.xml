@@ -1,0 +1,9 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment FIND</string>
+    <string name="text_hint">Должность, ключевые слова</string>
+    <string name="button">button</string>
+    <string name="vacanci_for_you">Вакансии для вас</string>
+    <string name="image">image</string>
+    <string name="button_callback">Откликнуться</string>
+</resources>
