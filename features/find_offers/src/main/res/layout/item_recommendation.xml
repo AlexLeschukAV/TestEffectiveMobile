@@ -9,11 +9,12 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="132dp"
         android:layout_height="120dp"
-        android:background="@drawable/background_card_recommendations">
+        app:strokeWidth="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_card_recommendations"
             android:orientation="vertical">
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -24,8 +25,8 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/cardview_light_background"
                 android:scaleType="center"
-                android:src="@drawable/ic_near_vacancies"
-                app:shapeAppearanceOverlay="@style/CircleShape" />
+                app:shapeAppearanceOverlay="@style/CircleShape"
+                tools:src="@drawable/ic_near_vacancies" />
 
             <TextView
                 android:id="@+id/title"

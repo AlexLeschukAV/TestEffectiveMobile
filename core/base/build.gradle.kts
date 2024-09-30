@@ -1,12 +1,10 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
-    namespace = "com.example.api"
+    namespace = "com.example.base"
     compileSdk = 34
 
     defaultConfig {
@@ -35,14 +33,13 @@ android {
 }
 
 dependencies {
-    implementation(project(":domain:models"))
-
-    implementation("com.google.dagger:hilt-android:2.52")
-    kapt("com.google.dagger:hilt-compiler:2.52")
 
     implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.test.espresso:espresso-core:3.6.1")
-
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.databinding:viewbinding:8.6.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-android:2.8.6")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }

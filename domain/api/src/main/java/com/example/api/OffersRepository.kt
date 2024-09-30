@@ -1,7 +1,8 @@
 package com.example.api
 
 import com.example.models.Offers
+import kotlinx.coroutines.flow.Flow
 
 interface OffersRepository {
-    suspend fun getOffers(): Offers?
+    fun getOffers(): Flow<Offers?>
 }
