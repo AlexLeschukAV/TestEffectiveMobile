@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TestEffectiveMobile" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Убираем статус-бар -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- Устанавливаем черный фон -->
+        <item name="android:windowBackground">#000000</item>
+
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.TestEffectiveMobile" parent="Base.Theme.TestEffectiveMobile" />
+
+        <style name="CustomBottomNavigationView">
+            <item name="android:itemBackground">@android:color/transparent</item>
+            <item name="android:navigationBarColor">@color/icon_blue_color</item>
+            <item name="android:textColor">@color/white</item>
+            <item name="android:actionBarTabStyle">@style/CustomBottomNavigationItem</item>
+        </style>
+
+        <style name="CustomBottomNavigationItem" parent="Widget.MaterialComponents.BottomNavigationView">
+            <item name="android:textAppearance">@style/TextAppearance.CustomBottomNavigationView</item>
+        </style>
+
+        <style name="TextAppearance.CustomBottomNavigationView" parent="TextAppearance.AppCompat.Caption">
+            <item name="android:textColor">@color/white</item>
+        </style>
+
+    <style name="CustomTextInputLayoutShapeAppearanceOverlay">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="CircleShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CustomMaterialCardView">
+        <item name="android:background">@color/cardview_background</item>
+        <item name="cardCornerRadius">8dp</item>
+    </style>
+
+</resources>

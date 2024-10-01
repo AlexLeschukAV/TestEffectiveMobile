@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="icon_blue_color">#00427D</color>
+    <color name="icon_first_color">#00427D</color>
+    <color name="icon_second_color">#015905</color>
+    <color name="cardview_background">#222325</color>
 </resources>

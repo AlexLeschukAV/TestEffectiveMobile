@@ -1,8 +1,9 @@
 package com.example.find_offers
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import com.example.base.BaseMviFragment
 import com.example.find_offers.OffersContract.Action
@@ -14,12 +15,17 @@ import com.example.find_offers.databinding.FragmentFindOffersBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @AndroidEntryPoint
 class FindOffersFragment : BaseMviFragment<FragmentFindOffersBinding, State, Action, Effect>() {
 
     private val viewModel: FindOffersViewModel by viewModels()
     private val offersAdapter: OffersAdapter by lazy { OffersAdapter() }
-    private val vacanciesAdapter: VacanciesAdapter by lazy { VacanciesAdapter() }
+    private val vacanciesAdapter: VacanciesAdapter by lazy {
+        VacanciesAdapter {
+            viewModel.setAction(Action.OnClickLike(it))
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,17 +47,28 @@ class FindOffersFragment : BaseMviFragment<FragmentFindOffersBinding, State, Act
     }
 
     override fun render(state: State) {
-        with (state){
+        with(state) {
             if (isLoading) binding.progressBar.show() else binding.progressBar.hide()
-            listOffers?.let {
-                offersAdapter.submitList(it)
-            }
-            listVacancies?.let {
-                vacanciesAdapter.submitList(it.take(3))
-                binding.buttonAddVacancies.isVisible = true
-                binding.buttonAddVacancies.text = "Ещё ${it.size} вакансий"
+            offers?.let {
+                offersAdapter.submitList(it.offers)
+                if (it.showAllVacancy) {
+                    vacanciesAdapter.submitList(it.vacancies)
+                } else {
+                    vacanciesAdapter.submitList(it.vacancies.take(3))
+                    binding.buttonAddVacancies.show()
+                    binding.buttonAddVacancies.text = "Ещё ${it.vacancies.size - 3} вакансий"
+                }
             }
 
+            binding.buttonAddVacancies.setOnClickListener {
+                binding.buttonAddVacancies.hide()
+                viewModel.setAction(Action.OnShowAllVacancy)
+            }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.setAction(Action.OnShowAllVacancy)
     }
 }

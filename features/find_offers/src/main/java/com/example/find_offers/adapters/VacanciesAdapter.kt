@@ -1,25 +1,31 @@
 package com.example.find_offers.adapters
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.find_offers.R
+import com.example.base.R as OffersR
 import com.example.find_offers.databinding.ItemVacanciesBinding
 import com.example.models.Vacancy
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-
-class VacanciesAdapter :
+@RequiresApi(Build.VERSION_CODES.O)
+class VacanciesAdapter(
+    private val onClickLike: (String) -> Unit,
+) :
     ListAdapter<Vacancy, VacanciesAdapter.VacanciesViewHolder>(DiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VacanciesViewHolder {
         val binding =
             ItemVacanciesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return VacanciesViewHolder(binding)
+        return VacanciesViewHolder(binding, onClickLike)
     }
 
     override fun onBindViewHolder(holder: VacanciesViewHolder, position: Int) {
@@ -28,6 +34,7 @@ class VacanciesAdapter :
 
     class VacanciesViewHolder(
         private val binding: ItemVacanciesBinding,
+        private val onClickLike: (String) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: Vacancy) {
@@ -37,15 +44,18 @@ class VacanciesAdapter :
                 }
                 icon.setImageDrawable(
                     if (item.isFavorite)
-                        ContextCompat.getDrawable(itemView.context, R.drawable.ic_like_icon)
+                        ContextCompat.getDrawable(itemView.context, OffersR.drawable.ic_like_icon)
                     else
-                        ContextCompat.getDrawable(itemView.context, R.drawable.ic_dislike_icon)
+                        ContextCompat.getDrawable(itemView.context, OffersR.drawable.ic_dislike_icon)
                 )
                 title.text = item.title
                 textTown.text = item.address.town
                 textCompany.text = item.company
                 textExperience.text = item.experience.previewText
-                textDayPublished.text = "Опубликовано ${item.publishedDate}"
+                textDayPublished.text = "Опубликовано ${formatDateString(item.publishedDate)}"
+                binding.icon.setOnClickListener {
+                    onClickLike(item.id)
+                }
             }
         }
 
@@ -57,10 +67,11 @@ class VacanciesAdapter :
             }
         }
 
-//        private fun formatDateString(input: String): String {
-//            val date = LocalDate.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-//            return date.format(DateTimeFormatter.ofPattern("d MMMM"))
-//        }
+
+        private fun formatDateString(input: String): String {
+            val date = LocalDate.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+            return date.format(DateTimeFormatter.ofPattern("d MMMM"))
+        }
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Vacancy>() {

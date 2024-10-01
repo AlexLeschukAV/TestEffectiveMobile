@@ -3,18 +3,17 @@ package com.example.find_offers
 import com.example.base.MviAction
 import com.example.base.MviEffect
 import com.example.base.MviState
-import com.example.models.Offer
-import com.example.models.Vacancy
+import com.example.models.Offers
 
 object OffersContract {
     sealed interface Action: MviAction{
-
+     data class OnClickLike(val id: String): Action
+        object OnShowAllVacancy: Action
     }
 
     data class State(
         val isLoading: Boolean = true,
-        val listOffers: List<Offer>? = null,
-        val listVacancies: List<Vacancy>? = null,
+        val offers: Offers? = null,
     ): MviState
 
     sealed interface Effect: MviEffect {

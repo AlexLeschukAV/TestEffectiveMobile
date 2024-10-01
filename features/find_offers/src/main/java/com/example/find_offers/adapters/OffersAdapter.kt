@@ -1,13 +1,12 @@
 package com.example.find_offers.adapters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.find_offers.R
+import com.example.base.R as OffersR
 import com.example.find_offers.databinding.ItemRecommendationBinding
 import com.example.models.Offer
 import com.example.models.Vacancies
@@ -28,14 +27,14 @@ class OffersAdapter : ListAdapter<Offer, OffersAdapter.OfferViewHolder>(DiffCall
         private val binding: ItemRecommendationBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Offer) {
-            val colorFirst = ContextCompat.getColor(itemView.context, R.color.icon_first_color)
-            val colorSecond = ContextCompat.getColor(itemView.context, R.color.icon_second_color)
+            val colorFirst = ContextCompat.getColor(itemView.context, OffersR.color.icon_first_color)
+            val colorSecond = ContextCompat.getColor(itemView.context, OffersR.color.icon_second_color)
             val nearVacancies =
-                ContextCompat.getDrawable(itemView.context, R.drawable.ic_near_vacancies)
+                ContextCompat.getDrawable(itemView.context, OffersR.drawable.ic_near_vacancies)
             val levelUpResume =
-                ContextCompat.getDrawable(itemView.context, R.drawable.ic_level_up_resume)
+                ContextCompat.getDrawable(itemView.context, OffersR.drawable.ic_level_up_resume)
             val temporaryJob =
-                ContextCompat.getDrawable(itemView.context, R.drawable.ic_temporary_job)
+                ContextCompat.getDrawable(itemView.context, OffersR.drawable.ic_temporary_job)
             with(binding) {
                 when (item.id) {
                     Vacancies.NEAR_VACANCIES.value -> {

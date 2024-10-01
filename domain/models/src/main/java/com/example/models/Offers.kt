@@ -2,8 +2,24 @@ package com.example.models
 
 data class Offers(
     val offers: List<Offer>,
-    val vacancies: List<Vacancy>
-)
+    val vacancies: List<Vacancy>,
+    val showAllVacancy: Boolean = false,
+) {
+    fun updateFavoriteVacancy(id: String): Offers {
+        val updatedVacancies = vacancies.map { vacancy ->
+            if (vacancy.id == id) {
+                vacancy.copy(isFavorite = !vacancy.isFavorite)
+            } else {
+                vacancy
+            }
+        }
+        return Offers(offers, updatedVacancies, showAllVacancy)
+    }
+
+    fun updateShowAllVacancy(): Offers{
+        return Offers(offers, vacancies, showAllVacancy = !showAllVacancy)
+    }
+}
 
 data class Offer(
     val id: String,
