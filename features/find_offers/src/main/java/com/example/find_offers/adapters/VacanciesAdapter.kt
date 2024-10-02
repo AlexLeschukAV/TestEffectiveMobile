@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.base.R as OffersR
-import com.example.find_offers.databinding.ItemVacanciesBinding
+import com.example.base.databinding.ItemVacanciesBinding
 import com.example.models.Vacancy
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter
 @RequiresApi(Build.VERSION_CODES.O)
 class VacanciesAdapter(
     private val onClickLike: (String) -> Unit,
+    private val onClickVacancy: (Vacancy) -> Unit,
 ) :
     ListAdapter<Vacancy, VacanciesAdapter.VacanciesViewHolder>(DiffCallback()) {
 
@@ -25,7 +26,7 @@ class VacanciesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VacanciesViewHolder {
         val binding =
             ItemVacanciesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return VacanciesViewHolder(binding, onClickLike)
+        return VacanciesViewHolder(binding, onClickLike, onClickVacancy)
     }
 
     override fun onBindViewHolder(holder: VacanciesViewHolder, position: Int) {
@@ -35,6 +36,7 @@ class VacanciesAdapter(
     class VacanciesViewHolder(
         private val binding: ItemVacanciesBinding,
         private val onClickLike: (String) -> Unit,
+        private val onClickVacancy: (Vacancy) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: Vacancy) {
@@ -55,6 +57,9 @@ class VacanciesAdapter(
                 textDayPublished.text = "Опубликовано ${formatDateString(item.publishedDate)}"
                 binding.icon.setOnClickListener {
                     onClickLike(item.id)
+                }
+                binding.root.setOnClickListener {
+                    onClickVacancy(item)
                 }
             }
         }

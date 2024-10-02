@@ -113,7 +113,6 @@
                 android:textColor="@android:color/white"
                 android:textSize="14sp" />
         </LinearLayout>
-
     </com.google.android.material.card.MaterialCardView>
 
 </FrameLayout>

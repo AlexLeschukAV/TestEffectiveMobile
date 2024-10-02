@@ -1,5 +1,9 @@
 package com.example.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+
 data class Offers(
     val offers: List<Offer>,
     val vacancies: List<Vacancy>,
@@ -16,7 +20,7 @@ data class Offers(
         return Offers(offers, updatedVacancies, showAllVacancy)
     }
 
-    fun updateShowAllVacancy(): Offers{
+    fun updateShowAllVacancy(): Offers {
         return Offers(offers, vacancies, showAllVacancy = !showAllVacancy)
     }
 }
@@ -30,6 +34,7 @@ data class Offer(
 
 data class Button(val text: String)
 
+@Parcelize
 data class Vacancy(
     val id: String,
     val lookingNumber: Int?,
@@ -45,20 +50,23 @@ data class Vacancy(
     val description: String,
     val responsibilities: String,
     val questions: List<String>
-)
+) : Parcelable
 
+@Parcelize
 data class Address(
     val town: String,
     val street: String,
     val house: String
-)
+) : Parcelable
 
+@Parcelize
 data class Experience(
     val previewText: String,
     val text: String
-)
+) : Parcelable
 
+@Parcelize
 data class Salary(
     val full: String,
     val short: String?
-)
+) : Parcelable

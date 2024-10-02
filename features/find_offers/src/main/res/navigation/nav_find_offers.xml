@@ -7,7 +7,20 @@
 
     <fragment
         android:id="@+id/findOffersFragment"
-        android:name="com.example.find_offers.FindOffersFragment"
+        android:name="com.example.find_offers.fragment.FindOffersFragment"
         android:label="fragment_find_offers"
-        tools:layout="@layout/fragment_find_offers" />
+        tools:layout="@layout/fragment_find_offers" >
+        <action
+            android:id="@+id/action_findOffersFragment_to_viewVacancyFragment"
+            app:destination="@id/viewVacancyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewVacancyFragment"
+        android:name="com.example.find_offers.fragment.ViewVacancyFragment"
+        android:label="fragment_view_vacancy"
+        tools:layout="@layout/fragment_view_vacancy" >
+        <argument
+            android:name="vacancy"
+            app:argType="com.example.models.Vacancy" />
+    </fragment>
 </navigation>

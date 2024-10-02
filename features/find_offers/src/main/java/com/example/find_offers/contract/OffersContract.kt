@@ -1,4 +1,4 @@
-package com.example.find_offers
+package com.example.find_offers.contract
 
 import com.example.base.MviAction
 import com.example.base.MviEffect

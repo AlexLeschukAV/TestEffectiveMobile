@@ -1,11 +1,11 @@
-package com.example.find_offers
+package com.example.find_offers.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.example.api.usecase.GetOffersUseCase
 import com.example.base.BaseMviViewModel
-import com.example.find_offers.OffersContract.Action
-import com.example.find_offers.OffersContract.Effect
-import com.example.find_offers.OffersContract.State
+import com.example.find_offers.contract.OffersContract.Action
+import com.example.find_offers.contract.OffersContract.Effect
+import com.example.find_offers.contract.OffersContract.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,6 +33,8 @@ class FindOffersViewModel @Inject constructor(
             }
         }
     }
+
+
 
     private fun setLike(id: String) {
         setState { it.copy(offers = it.offers?.updateFavoriteVacancy(id)) }

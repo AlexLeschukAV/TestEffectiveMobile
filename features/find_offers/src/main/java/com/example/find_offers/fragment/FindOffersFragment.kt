@@ -1,19 +1,20 @@
-package com.example.find_offers
+package com.example.find_offers.fragment
 
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.base.BaseMviFragment
-import com.example.find_offers.OffersContract.Action
-import com.example.find_offers.OffersContract.Effect
-import com.example.find_offers.OffersContract.State
+import com.example.find_offers.viewmodel.FindOffersViewModel
+import com.example.find_offers.contract.OffersContract.State
+import com.example.find_offers.contract.OffersContract.Action
+import com.example.find_offers.contract.OffersContract.Effect
 import com.example.find_offers.adapters.OffersAdapter
 import com.example.find_offers.adapters.VacanciesAdapter
 import com.example.find_offers.databinding.FragmentFindOffersBinding
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @RequiresApi(Build.VERSION_CODES.O)
 @AndroidEntryPoint
@@ -22,9 +23,14 @@ class FindOffersFragment : BaseMviFragment<FragmentFindOffersBinding, State, Act
     private val viewModel: FindOffersViewModel by viewModels()
     private val offersAdapter: OffersAdapter by lazy { OffersAdapter() }
     private val vacanciesAdapter: VacanciesAdapter by lazy {
-        VacanciesAdapter {
-            viewModel.setAction(Action.OnClickLike(it))
-        }
+        VacanciesAdapter(
+            onClickLike = { viewModel.setAction(Action.OnClickLike(it)) },
+            onClickVacancy = {
+                findNavController().navigate(
+                    FindOffersFragmentDirections.actionFindOffersFragmentToViewVacancyFragment(it)
+                )
+            }
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,7 +67,13 @@ class FindOffersFragment : BaseMviFragment<FragmentFindOffersBinding, State, Act
             }
 
             binding.buttonAddVacancies.setOnClickListener {
-                binding.buttonAddVacancies.hide()
+                with(binding) {
+                    buttonAddVacancies.hide()
+                    offersRecommendation.hide()
+                    tvVacancy.hide()
+                    showAllVacancies.show()
+                    countVacancy.text = "${state.offers?.vacancies?.size} вакансий"
+                }
                 viewModel.setAction(Action.OnShowAllVacancy)
             }
         }
