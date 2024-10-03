@@ -46,8 +46,9 @@ dependencies {
     implementation(project(":domain:api"))
     implementation(project(":domain:impl"))
     implementation(project(":data:impl"))
-    implementation(project(":features:find_offers"))
+    implementation(project(":features:offers"))
     implementation(project(":features:favourites"))
+    implementation(project(":features:authorization"))
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")

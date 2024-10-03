@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context="com.example.offers.fragment.FindOffersFragment">
+
+    <LinearLayout
+        android:id="@+id/liner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="90"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_text_corner"
+                    android:drawableStart="@drawable/ic_find"
+                    android:drawablePadding="8dp"
+                    android:enabled="false"
+                    android:hint="@string/text_hint"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:padding="4dp"
+                    android:textColorHint="#A5A6A8"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:background="@null"
+                    android:contentDescription="@string/button"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_filter" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/offers_recommendation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-4dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_recommendation" />
+
+            <TextView
+                android:id="@+id/tv_vacancy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/vacanci_for_you"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/show_all_vacancies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/count_vacancy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp"
+                    tools:text="145 вакансий" />
+
+                <TextView
+                    android:id="@+id/vacancy_by_correspondence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:drawableEnd="@drawable/ic_by_correspondence"
+                    android:drawablePadding="4dp"
+                    android:text="@string/vacancy_by_correspondence"
+                    android:textColor="@color/text_blue_color"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rw_vacancies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_vacancies" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_add_vacancies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/button_green_color"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            tools:text="Еще 143 вакансииk" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+</FrameLayout>

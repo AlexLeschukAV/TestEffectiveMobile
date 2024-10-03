@@ -8,6 +8,5 @@ interface OffersRepository {
     fun getOffers(): Flow<Offers?>
 
     fun getAllFavoriteVacancy(): Flow<List<Vacancy>>
-    suspend fun addFavoriteVacancy(vacancies: List<Vacancy>)
-    suspend fun deleteFavoriteVacancy(item: Vacancy)
+    suspend fun addVacancies(vacancies: List<Vacancy>)
 }

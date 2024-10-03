@@ -4,53 +4,55 @@ import androidx.room.TypeConverter
 import com.example.api.db.entity.AddressEntity
 import com.example.api.db.entity.ExperienceEntity
 import com.example.api.db.entity.SalaryEntity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 object EntityConverters {
-    @JvmStatic
+
+    private val gson = Gson()
+
     @TypeConverter
-    fun experienceToJSON(experience: ExperienceEntity?): String? {
-        return ExperienceConverter.experienceToJSON(experience)
+    fun listToString(value: List<String>): String {
+        return gson.toJson(value)
     }
 
-    @JvmStatic
     @TypeConverter
-    fun jsonToExperience(json: String?): ExperienceEntity? {
-        return ExperienceConverter.jsonToExperience(json)
+    fun stringToList(data: String?): List<String>? {
+        if (data == null) {
+            return null
+        }
+
+        val listType = object : TypeToken<List<String>>() {}.type
+        return gson.fromJson(data, listType)
     }
 
-    @JvmStatic
     @TypeConverter
-    fun salaryToJSON(salary: SalaryEntity?): String? {
-        return SalaryConverter.salaryToJSON(salary)
+    fun addressToString(address: AddressEntity?): String? {
+        return address?.let { gson.toJson(it) }
     }
 
-    @JvmStatic
     @TypeConverter
-    fun jsonToSalary(json: String?): SalaryEntity? {
-        return SalaryConverter.jsonToSalary(json)
+    fun stringToAddress(data: String?): AddressEntity? {
+        return data?.let { gson.fromJson(it, AddressEntity::class.java) }
     }
 
-    @JvmStatic
     @TypeConverter
-    fun addressToJSON(address: AddressEntity?): String? {
-        return AddressConverter.addressToJSON(address)
+    fun experienceToString(experience: ExperienceEntity?): String? {
+        return experience?.let { gson.toJson(it) }
     }
 
-    @JvmStatic
     @TypeConverter
-    fun jsonToAddress(json: String?): AddressEntity? {
-        return AddressConverter.jsonToAddress(json)
+    fun stringToExperience(data: String?): ExperienceEntity? {
+        return data?.let { gson.fromJson(it, ExperienceEntity::class.java) }
     }
 
-    @JvmStatic
     @TypeConverter
-    fun listToString(list: List<String>?): String? {
-        return ListStringConverter.listToString(list)
+    fun salaryToString(salary: SalaryEntity?): String? {
+        return salary?.let { gson.toJson(it) }
     }
 
-    @JvmStatic
     @TypeConverter
-    fun stringToList(string: String?): List<String>? {
-        return ListStringConverter.stringToList(string)
+    fun stringToSalary(data: String?): SalaryEntity? {
+        return data?.let { gson.fromJson(it, SalaryEntity::class.java) }
     }
 }

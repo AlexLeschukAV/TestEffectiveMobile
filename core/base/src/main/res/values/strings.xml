@@ -8,4 +8,6 @@
     <string name="vacancy_by_correspondence">По соответствию</string>
     <string name="ask_question">Задайте вопрос работодателю</string>
     <string name="responce_on_vacancy_text">Он получит его с откликом на вакансию</string>
+    <string name="add_mail">Добавить сопроводительное</string>
+    <string name="your_mail">Ваше сопроводительное письмо</string>
 </resources>

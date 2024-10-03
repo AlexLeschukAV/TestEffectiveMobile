@@ -38,19 +38,30 @@ data class Button(val text: String)
 data class Vacancy(
     val id: String,
     val lookingNumber: Int?,
-    val title: String,
+    val title: String?,
     val address: Address,
-    val company: String,
+    val company: String?,
     val experience: Experience,
-    val publishedDate: String,
+    val publishedDate: String?,
     val isFavorite: Boolean,
     val salary: Salary,
     val schedules: List<String>,
     val appliedNumber: Int?,
-    val description: String,
-    val responsibilities: String,
+    val description: String?,
+    val responsibilities: String?,
     val questions: List<String>
-) : Parcelable
+) : Parcelable {
+    fun updateFavoriteVacancy(id: String): Vacancy {
+        val updatedVacancies =
+            if (this.id == id) {
+                this.copy(isFavorite = !this.isFavorite)
+            } else {
+                this
+            }
+        return updatedVacancies
+    }
+}
+
 
 @Parcelize
 data class Address(

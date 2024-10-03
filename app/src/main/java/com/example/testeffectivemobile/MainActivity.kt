@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.favourites.R as FavouritesR
 import com.example.find_offers.R as FindR
+import com.example.authorization.R as AuthR
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -43,6 +44,11 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.favouritesFragment -> {
                     navController.navigate(FavouritesR.id.nav_favourite)
+                    true
+                }
+
+                AuthR.id.authorizationFragment -> {
+                    navController.navigate(AuthR.id.nav_auth)
                     true
                 }
 

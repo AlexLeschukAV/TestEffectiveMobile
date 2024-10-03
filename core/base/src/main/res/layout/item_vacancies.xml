@@ -100,14 +100,14 @@
                 android:textSize="14sp"
                 tools:text="Опубликовано 20 февраля" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_callback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/background_button"
+                android:backgroundTint="@color/button_green_color"
                 android:text="@string/button_callback"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"

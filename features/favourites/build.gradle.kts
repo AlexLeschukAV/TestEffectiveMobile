@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
     id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -38,6 +39,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:base"))
+    implementation(project(":domain:api"))
+    implementation(project(":domain:models"))
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
@@ -52,7 +56,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
 
-    implementation("com.google.dagger:hilt-android:2.52")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")

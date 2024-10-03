@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#0C0C0C"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="32dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ic_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="7"
+            android:scaleType="center"
+            android:src="@drawable/avatar"
+            app:shapeAppearanceOverlay="@style/CircleShape" />
+
+        <TextView
+            android:id="@+id/name_vacancy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            tools:text="Резюме для отклика   \n\n  UI/UX дизайнер" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:background="#313234" />
+
+    <EditText
+        android:id="@+id/edit_mail"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:background="#0C0C0C"
+        android:enabled="false"
+        android:hint="@string/your_mail"
+        android:inputType="textCapSentences|textMultiLine"
+        android:padding="6dp"
+        android:textColorHint="#858688"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/add_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/add_mail"
+        android:textColor="@color/button_green_color" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_callback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="@color/button_green_color"
+        android:layout_marginTop="20dp"
+        android:text="@string/button_callback"
+        android:textColor="@color/white" />
+
+</LinearLayout>

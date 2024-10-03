@@ -2,20 +2,20 @@ package com.example.api.db.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
 import com.example.api.db.entity.VacancyEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DaoItems {
 
-    @Query("SELECT * FROM vacancies")
-    fun getAllVacancies(): Flow<List<VacancyEntity>>
+   @Query("SELECT * FROM vacancies WHERE isFavorite = :isFavorite")
+    fun getFavoriteVacancies(isFavorite: Boolean): Flow<List<VacancyEntity>>
 
-    @Update
-    suspend fun updateVacancy(entity: List<VacancyEntity>)
+    @Insert(entity = VacancyEntity::class,
+        onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertVacancy(entity: List<VacancyEntity>)
 
-    @Delete
-    suspend fun deleteVacancy(entity: VacancyEntity)
 }

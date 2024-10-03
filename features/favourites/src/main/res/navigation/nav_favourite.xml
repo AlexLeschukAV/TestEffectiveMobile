@@ -7,7 +7,20 @@
 
     <fragment
         android:id="@+id/favouritesFragment"
-        android:name="com.example.favourites.FavouritesFragment"
+        android:name="com.example.favourites.fragment.FavouritesFragment"
         android:label="fragment_favourites"
-        tools:layout="@layout/fragment_favourites" />
+        tools:layout="@layout/fragment_favourites" >
+        <action
+            android:id="@+id/action_favouritesFragment_to_viewVacancyFragment"
+            app:destination="@id/viewVacancyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewVacancyFragment"
+        android:name="com.example.favourites.fragment.ViewVacancyFragment"
+        android:label="ViewVacancyFragment"
+        tools:layout="@layout/fragment_view_vacancy">
+        <argument
+            android:name="vacancy"
+            app:argType="com.example.models.Vacancy" />
+    </fragment>
 </navigation>

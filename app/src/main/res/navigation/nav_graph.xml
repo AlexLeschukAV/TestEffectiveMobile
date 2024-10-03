@@ -6,4 +6,5 @@
 
   <include app:graph="@navigation/nav_find_offers"/>
   <include app:graph="@navigation/nav_favourite"/>
+<!--  <include app:gpaph="@navigation/nav_auth"/>-->
 </navigation>
