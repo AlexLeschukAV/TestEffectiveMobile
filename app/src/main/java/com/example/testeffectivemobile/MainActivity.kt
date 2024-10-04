@@ -11,11 +11,21 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.favourites.R as FavouritesR
 import com.example.find_offers.R as FindR
-import com.example.authorization.R as AuthR
+import com.example.messages.R as MessagesR
+import com.example.profile.R as ProfileR
+import com.example.responses.R as ResponseR
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
+    private val fragmentListWhenShowMenu = listOf(
+        FindR.id.findOffersFragment,
+        FavouritesR.id.favouritesFragment,
+        ResponseR.id.responsesFragment,
+        MessagesR.id.messagesFragment,
+        ProfileR.id.profileFragment,
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -47,8 +57,18 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
-                AuthR.id.authorizationFragment -> {
-                    navController.navigate(AuthR.id.nav_auth)
+                R.id.responsesFragment -> {
+                    navController.navigate(ResponseR.id.nav_responses_offers)
+                    true
+                }
+
+                R.id.messagesFragment -> {
+                    navController.navigate(MessagesR.id.nav_message_offers)
+                    true
+                }
+
+                R.id.profileFragment -> {
+                    navController.navigate(ProfileR.id.nav_profile_offers)
                     true
                 }
 
@@ -58,9 +78,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                FindR.id.findOffersFragment, FavouritesR.id.favouritesFragment -> bottomNavView.isVisible =
-                    true
-
+                in fragmentListWhenShowMenu -> bottomNavView.isVisible = true
                 else -> bottomNavView.isVisible = false
             }
         }

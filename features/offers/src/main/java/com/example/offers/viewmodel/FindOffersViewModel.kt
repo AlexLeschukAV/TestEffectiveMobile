@@ -45,12 +45,17 @@ class FindOffersViewModel @Inject constructor(
         setState { it.copy(offers = it.offers?.updateFavoriteVacancy(id)) }
     }
 
+    private fun showAllVacancy(){
+        setState { it.copy(offers = it.offers?.updateShowAllVacancy()) }
+    }
+
     override fun initialState(): State = State()
 
     override fun handleEvent(action: Action) {
         when (action) {
             is Action.OnClickLike -> setLike(action.id)
             is Action.AddVacancies -> addVacancies(action.list)
+            Action.OnShowAllVacancy -> showAllVacancy()
         }
     }
 }

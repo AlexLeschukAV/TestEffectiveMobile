@@ -121,11 +121,12 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/button_green_color"
+            android:backgroundTint="@color/text_blue_color"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:visibility="gone"
+            app:cornerRadius="8dp"
             tools:text="Еще 143 вакансииk" />
     </LinearLayout>
 

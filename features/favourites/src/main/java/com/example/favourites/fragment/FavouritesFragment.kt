@@ -1,5 +1,6 @@
 package com.example.favourites.fragment
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -48,12 +49,23 @@ class FavouritesFragment : BaseFragment<FragmentFavouritesBinding, State, Action
 
     override fun render(effect: Effect) {}
 
+    @SuppressLint("SetTextI18n")
     override fun render(state: State) {
         with(state) {
             vacancy?.let {
+                binding.sizeVacancy.text = "${it.size} ${getVacancyWord(it.size)} "
                 val list = it.filter { vacancy -> vacancy.isFavorite }
                 adapter.submitList(list)
             }
         }
+    }
+}
+
+private fun getVacancyWord(n: Int): String {
+    return when (n) {
+        0 -> "вакансий"
+        1 -> "вакансия"
+        2, 3, 4 -> "вакансии"
+        else -> "вакансий"
     }
 }

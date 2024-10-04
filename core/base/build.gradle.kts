@@ -40,7 +40,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.databinding:viewbinding:8.6.1")
+    implementation("androidx.databinding:viewbinding:8.7.0")
     implementation("androidx.lifecycle:lifecycle-runtime-android:2.8.6")
     implementation(project(":domain:models"))
     testImplementation("junit:junit:4.13.2")

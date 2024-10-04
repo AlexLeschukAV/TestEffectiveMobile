@@ -78,9 +78,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:backgroundTint="@color/button_green_color"
         android:layout_marginTop="20dp"
+        android:backgroundTint="@color/button_green_color"
         android:text="@string/button_callback"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        app:cornerRadius="8dp" />
 
 </LinearLayout>

@@ -2,9 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/nav_find_offers">
+    app:startDestination="@id/nav_auth">
 
-  <include app:graph="@navigation/nav_find_offers"/>
-  <include app:graph="@navigation/nav_favourite"/>
-<!--  <include app:gpaph="@navigation/nav_auth"/>-->
+    <include app:graph="@navigation/nav_find_offers" />
+    <include app:graph="@navigation/nav_favourite" />
+    <include app:graph="@navigation/nav_profile_offers" />
+    <include app:graph="@navigation/nav_responses_offers" />
+    <include app:graph="@navigation/nav_message_offers" />
+    <include app:graph="@navigation/nav_auth" />
+
 </navigation>

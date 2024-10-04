@@ -10,6 +10,7 @@ object OffersContract {
     sealed interface Action : MviAction {
         data class OnClickLike(val id: String) : Action
         data class AddVacancies(val list: List<Vacancy>) : Action
+        data object OnShowAllVacancy: Action
     }
 
     data class State(

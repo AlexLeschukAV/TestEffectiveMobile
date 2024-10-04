@@ -35,7 +35,7 @@ class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action
                 )
             },
             onClickButton = {
-                showRespondDialog(it){}
+                showRespondDialog(it) {}
             }
         )
     }
@@ -79,6 +79,7 @@ class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action
             }
 
             binding.buttonAddVacancies.setOnClickListener {
+                viewModel.setAction(Action.OnShowAllVacancy)
                 with(binding) {
                     buttonAddVacancies.hide()
                     offersRecommendation.hide()

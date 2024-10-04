@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:text="@string/enter_room"
         android:textColor="@color/white"
         android:textSize="20sp" />
@@ -58,15 +58,16 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_next"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/background"
                     android:backgroundTint="@color/text_blue_color"
                     android:text="@string/resume"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    app:cornerRadius="8dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -114,8 +115,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="@color/button_green_color"
                 android:layout_marginBottom="24dp"
+                android:backgroundTint="@color/button_green_color"
                 android:text="@string/search_personal" />
         </LinearLayout>
 

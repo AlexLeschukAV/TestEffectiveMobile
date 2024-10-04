@@ -16,21 +16,21 @@
         android:enabled="true"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/responses"
+        android:id="@+id/responsesFragment"
         android:icon="@drawable/ic_responces"
         android:orderInCategory="3"
         android:title="@string/responces"
         android:enabled="true"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/messages"
+        android:id="@+id/messagesFragment"
         android:icon="@drawable/ic_messages"
         android:orderInCategory="4"
         android:title="@string/messages"
         android:enabled="true"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/profile"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/ic_profile"
         android:orderInCategory="5"
         android:title="@string/profile"
