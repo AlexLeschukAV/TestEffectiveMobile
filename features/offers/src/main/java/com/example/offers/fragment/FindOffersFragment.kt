@@ -1,6 +1,7 @@
 package com.example.offers.fragment
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -8,14 +9,15 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.base.BaseFragment
-import com.example.offers.viewmodel.FindOffersViewModel
-import com.example.offers.contract.OffersContract.State
-import com.example.offers.contract.OffersContract.Action
-import com.example.offers.contract.OffersContract.Effect
-import com.example.offers.adapter.OffersAdapter
 import com.example.base.adapters.VacanciesAdapter
 import com.example.base.ui.RespondDialog.Companion.showRespondDialog
 import com.example.find_offers.databinding.FragmentFindOffersBinding
+import com.example.offers.adapter.OffersAdapter
+import com.example.offers.contract.OffersContract.Action
+import com.example.offers.contract.OffersContract.Effect
+import com.example.offers.contract.OffersContract.State
+import com.example.offers.viewmodel.FindOffersViewModel
+import com.google.android.material.badge.BadgeDrawable
 import dagger.hilt.android.AndroidEntryPoint
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -39,6 +41,12 @@ class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action
             }
         )
     }
+//
+//    val badge = BadgeDrawable.create(requireContext()).apply {
+//        backgroundColor = Color.RED
+//        badgeTextColor = Color.WHITE
+//        badgeGravity = BadgeDrawable.TOP_END
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.TestEffectiveMobile" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Убираем статус-бар -->
@@ -11,26 +11,13 @@
         <!-- Устанавливаем черный фон -->
         <item name="android:windowBackground">#000000</item>
 
-        <!-- Customize your light theme here. -->
-<!--         <item name="colorPrimary">@color/button_green_color</item>-->
     </style>
 
     <style name="Theme.TestEffectiveMobile" parent="Base.Theme.TestEffectiveMobile" />
 
-        <style name="CustomBottomNavigationView">
-            <item name="android:itemBackground">@android:color/transparent</item>
-            <item name="android:navigationBarColor">@color/icon_blue_color</item>
-            <item name="android:textColor">@color/white</item>
-            <item name="android:actionBarTabStyle">@style/CustomBottomNavigationItem</item>
-        </style>
-
-        <style name="CustomBottomNavigationItem" parent="Widget.MaterialComponents.BottomNavigationView">
-            <item name="android:textAppearance">@style/TextAppearance.CustomBottomNavigationView</item>
-        </style>
-
-        <style name="TextAppearance.CustomBottomNavigationView" parent="TextAppearance.AppCompat.Caption">
-            <item name="android:textColor">@color/white</item>
-        </style>
+    <style name="TextAppearance.CustomBottomNavigationView" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textColor">@color/white</item>
+    </style>
 
     <style name="CustomTextInputLayoutShapeAppearanceOverlay">
         <item name="cornerFamily">rounded</item>
@@ -45,6 +32,12 @@
     <style name="CustomMaterialCardView">
         <item name="android:background">@color/cardview_background</item>
         <item name="cardCornerRadius">8dp</item>
+    </style>
+
+    <style name="CustomBottomNavigationStyle" parent="@style/Widget.Design.BottomNavigationView">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="itemIconTint">@drawable/icon_tint_color</item>
+        <item name="itemTextColor">@drawable/text_color_selector</item>
     </style>
 
 </resources>
