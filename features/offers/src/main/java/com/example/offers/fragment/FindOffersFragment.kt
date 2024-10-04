@@ -101,8 +101,10 @@ class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action
         bottomNavigationDataObserver = Observer { navData ->
             val menuItem = navData.menuItem
             val badge = navData.bottomNavigationView?.getOrCreateBadge(menuItem)
-            badge?.isVisible
-            badge?.number = n
+            if (n > 0) {
+                badge?.isVisible = true
+                badge?.number = n
+            } else badge?.isVisible = false
         }
         BottomNavigationViewSource.instance.observe(
             viewLifecycleOwner,
