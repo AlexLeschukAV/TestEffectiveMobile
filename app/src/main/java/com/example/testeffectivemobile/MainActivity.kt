@@ -7,6 +7,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.example.base.BottomNavigationViewSource
+import com.example.base.utils.NavigationData
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.favourites.R as FavouritesR
@@ -43,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_view)
+        val menuItem = R.id.favouritesFragment
+        BottomNavigationViewSource.instance.value =NavigationData(bottomNavView, menuItem)
 
         NavigationUI.setupWithNavController(bottomNavView, navController)
         bottomNavView.setOnItemSelectedListener { item ->

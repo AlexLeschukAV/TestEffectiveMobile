@@ -1,23 +1,24 @@
 package com.example.offers.fragment
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.base.BaseFragment
+import com.example.base.BottomNavigationViewSource
 import com.example.base.adapters.VacanciesAdapter
 import com.example.base.ui.RespondDialog.Companion.showRespondDialog
+import com.example.base.utils.NavigationData
 import com.example.find_offers.databinding.FragmentFindOffersBinding
 import com.example.offers.adapter.OffersAdapter
 import com.example.offers.contract.OffersContract.Action
 import com.example.offers.contract.OffersContract.Effect
 import com.example.offers.contract.OffersContract.State
 import com.example.offers.viewmodel.FindOffersViewModel
-import com.google.android.material.badge.BadgeDrawable
 import dagger.hilt.android.AndroidEntryPoint
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -25,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action, Effect>() {
 
     private val viewModel: FindOffersViewModel by viewModels()
+    private lateinit var bottomNavigationDataObserver: Observer<NavigationData>
     private val offersAdapter: OffersAdapter by lazy { OffersAdapter() }
     private val vacanciesAdapter: VacanciesAdapter by lazy {
         VacanciesAdapter(
@@ -41,12 +43,6 @@ class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action
             }
         )
     }
-//
-//    val badge = BadgeDrawable.create(requireContext()).apply {
-//        backgroundColor = Color.RED
-//        badgeTextColor = Color.WHITE
-//        badgeGravity = BadgeDrawable.TOP_END
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,6 +80,8 @@ class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action
             }
             offers?.vacancies?.let {
                 viewModel.setAction(Action.AddVacancies(it))
+                val numberBadge = it.count { vacancy -> vacancy.isFavorite }
+                createBadge(numberBadge)
             }
 
             binding.buttonAddVacancies.setOnClickListener {
@@ -97,5 +95,18 @@ class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action
                 }
             }
         }
+    }
+
+    private fun createBadge(n: Int) {
+        bottomNavigationDataObserver = Observer { navData ->
+            val menuItem = navData.menuItem
+            val badge = navData.bottomNavigationView?.getOrCreateBadge(menuItem)
+            badge?.isVisible
+            badge?.number = n
+        }
+        BottomNavigationViewSource.instance.observe(
+            viewLifecycleOwner,
+            bottomNavigationDataObserver
+        )
     }
 }
