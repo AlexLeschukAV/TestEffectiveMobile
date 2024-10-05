@@ -2,12 +2,13 @@
 <EditText xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="48dp"
     android:layout_height="48dp"
-    android:background="@drawable/password_corner"
-    android:hint="@string/hint_star"
-    android:gravity="center"
-    android:textSize="24sp"
     android:layout_marginEnd="8dp"
+    android:background="@drawable/password_corner"
+    android:enabled="false"
+    android:gravity="center"
+    android:hint="@string/hint_star"
+    android:inputType="number"
     android:textColorHint="@color/response_text_color"
-    android:inputType="number">
+    android:textSize="24sp">
 
 </EditText>

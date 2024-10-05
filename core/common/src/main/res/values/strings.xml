@@ -1,0 +1,13 @@
+<resources>
+    <string name="button_callback">Откликнуться</string>
+    <string name="image">image\n</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_hint">Должность, ключевые слова</string>
+    <string name="button">button</string>
+    <string name="vacanci_for_you">Вакансии для вас</string>
+    <string name="vacancy_by_correspondence">По соответствию</string>
+    <string name="ask_question">Задайте вопрос работодателю</string>
+    <string name="responce_on_vacancy_text">Он получит его с откликом на вакансию</string>
+    <string name="add_mail">Добавить сопроводительное</string>
+    <string name="your_mail">Ваше сопроводительное письмо</string>
+</resources>

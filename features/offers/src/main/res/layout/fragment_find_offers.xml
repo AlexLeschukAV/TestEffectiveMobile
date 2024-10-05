@@ -24,7 +24,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:orientation="horizontal"
                 tools:ignore="UselessParent">
 
@@ -68,6 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="32dp"
+                android:ellipsize="end"
+                android:lines="1"
                 android:text="@string/vacanci_for_you"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
@@ -86,6 +88,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:lines="1"
                     android:textColor="@android:color/white"
                     android:textSize="14sp"
                     tools:text="145 вакансий" />
@@ -97,6 +101,8 @@
                     android:layout_weight="0"
                     android:drawableEnd="@drawable/ic_by_correspondence"
                     android:drawablePadding="4dp"
+                    android:ellipsize="end"
+                    android:lines="1"
                     android:text="@string/vacancy_by_correspondence"
                     android:textColor="@color/text_blue_color"
                     android:textSize="14sp" />
@@ -127,7 +133,7 @@
             android:textSize="16sp"
             android:visibility="gone"
             app:cornerRadius="8dp"
-            tools:text="Еще 143 вакансииk" />
+            tools:text="Еще 143 вакансии" />
     </LinearLayout>
 
     <ProgressBar

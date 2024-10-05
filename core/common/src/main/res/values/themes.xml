@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TestEffectiveMobile" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Убираем статус-бар -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <!-- Устанавливаем черный фон -->
+        <item name="android:windowBackground">#000000</item>
+
+    </style>
+
+    <style name="Theme.TestEffectiveMobile" parent="Base.Theme.TestEffectiveMobile" />
+
+    <style name="TextAppearance.CustomBottomNavigationView" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="CustomTextInputLayoutShapeAppearanceOverlay">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="CircleShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CustomMaterialCardView">
+        <item name="android:background">@color/cardview_background</item>
+        <item name="cardCornerRadius">8dp</item>
+    </style>
+
+    <style name="CustomBottomNavigationStyle" parent="@style/Widget.Design.BottomNavigationView">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="itemIconTint">@drawable/icon_tint_color</item>
+        <item name="itemTextColor">@drawable/text_color_selector</item>
+    </style>
+
+</resources>

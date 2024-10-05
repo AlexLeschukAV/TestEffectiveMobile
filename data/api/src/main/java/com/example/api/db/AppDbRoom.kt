@@ -7,7 +7,6 @@ import com.example.api.db.converter.EntityConverters
 import com.example.api.db.dao.DaoItems
 import com.example.api.db.entity.VacancyEntity
 
-
 @Database(
     entities = [VacancyEntity::class],
     version = 1,

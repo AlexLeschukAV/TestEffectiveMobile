@@ -8,6 +8,7 @@ import com.example.models.Vacancy
 
 object OffersContract {
     sealed interface Action : MviAction {
+        data object GetOffers: Action
         data class OnClickLike(val id: String) : Action
         data class AddVacancies(val list: List<Vacancy>) : Action
         data object OnShowAllVacancy: Action

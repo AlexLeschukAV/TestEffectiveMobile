@@ -6,41 +6,23 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.base.BaseFragment
-import com.example.base.BottomNavigationViewSource
-import com.example.base.adapters.VacanciesAdapter
-import com.example.base.ui.RespondDialog.Companion.showRespondDialog
-import com.example.base.utils.NavigationData
-import com.example.favourites.databinding.FragmentFavouritesBinding
-import dagger.hilt.android.AndroidEntryPoint
-import com.example.favourites.contract.FavoriteVacancyContract.State
+import com.example.common.adapters.VacanciesAdapter
+import com.example.common.ui.RespondDialog.Companion.showRespondDialog
 import com.example.favourites.contract.FavoriteVacancyContract.Action
 import com.example.favourites.contract.FavoriteVacancyContract.Effect
+import com.example.favourites.contract.FavoriteVacancyContract.State
+import com.example.favourites.databinding.FragmentFavouritesBinding
 import com.example.favourites.viewmodel.FavoriteVacancyViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 @RequiresApi(Build.VERSION_CODES.O)
 @AndroidEntryPoint
 class FavouritesFragment : BaseFragment<FragmentFavouritesBinding, State, Action, Effect>() {
     private val viewmodel: FavoriteVacancyViewModel by viewModels()
-    private lateinit var bottomNavigationDataObserver: Observer<NavigationData>
 
-    private val adapter: VacanciesAdapter by lazy {
-        VacanciesAdapter(
-            onClickLike = { viewmodel.setAction(Action.OnClickLike(it)) },
-            onClickVacancy = {
-                findNavController().navigate(
-                    FavouritesFragmentDirections.actionFavouritesFragmentToViewVacancyFragment(
-                        it
-                    )
-                )
-            },
-            onClickButton = {
-                showRespondDialog(it) {}
-            }
-        )
-    }
+    private val adapter: VacanciesAdapter by lazy { createVacancyAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,18 +49,19 @@ class FavouritesFragment : BaseFragment<FragmentFavouritesBinding, State, Action
         }
     }
 
-    private fun createBadge(n: Int) {
-        bottomNavigationDataObserver = Observer { navData ->
-            val menuItem = navData.menuItem
-            val badge = navData.bottomNavigationView?.getOrCreateBadge(menuItem)
-            if (n > 0) {
-                badge?.isVisible = true
-                badge?.number = n
-            } else badge?.isVisible = false
-        }
-        BottomNavigationViewSource.instance.observe(
-            viewLifecycleOwner,
-            bottomNavigationDataObserver
+    private fun createVacancyAdapter(): VacanciesAdapter {
+        return VacanciesAdapter(
+            onClickLike = { viewmodel.setAction(Action.OnClickLike(it)) },
+            onClickVacancy = {
+                findNavController().navigate(
+                    FavouritesFragmentDirections.actionFavouritesFragmentToViewVacancyFragment(
+                        it
+                    )
+                )
+            },
+            onClickButton = {
+                showRespondDialog(it) {}
+            }
         )
     }
 }

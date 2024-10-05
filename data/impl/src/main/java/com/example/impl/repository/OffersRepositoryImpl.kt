@@ -29,13 +29,13 @@ class OffersRepositoryImpl @Inject constructor(
                 if (response.isSuccessful) {
                     trySend(response.body())
                 } else {
-                    // Обработка ошибки
+                    // Обработка ошибки пока только лог
                     Log.d("Error", "Ошибка: ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<Offers>, t: Throwable) {
-                // Обработка ошибки сети
+                // Обработка ошибки сети пока только лог
                 Log.d("Error", "Ошибка: ${t.message}")
             }
         })

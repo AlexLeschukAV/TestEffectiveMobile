@@ -6,17 +6,19 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.base.R
+import com.example.common.R
 import com.example.find_offers.databinding.ItemRecommendationBinding
 import com.example.models.Offer
 import com.example.models.Vacancies
 
-class OffersAdapter : ListAdapter<Offer, OffersAdapter.OfferViewHolder>(DiffCallback()) {
+class OffersAdapter(
+    private val onClick: (String) -> Unit,
+) : ListAdapter<Offer, OffersAdapter.OfferViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfferViewHolder {
         val binding =
             ItemRecommendationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return OfferViewHolder(binding)
+        return OfferViewHolder(binding, onClick)
     }
 
     override fun onBindViewHolder(holder: OfferViewHolder, position: Int) {
@@ -25,6 +27,7 @@ class OffersAdapter : ListAdapter<Offer, OffersAdapter.OfferViewHolder>(DiffCall
 
     class OfferViewHolder(
         private val binding: ItemRecommendationBinding,
+        private val onclick: (String) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Offer) {
             val colorFirst = ContextCompat.getColor(itemView.context, R.color.icon_first_color)
@@ -55,6 +58,9 @@ class OffersAdapter : ListAdapter<Offer, OffersAdapter.OfferViewHolder>(DiffCall
                 title.text = item.title
                 item.button?.text.let {
                     textButton.text = it
+                }
+                root.setOnClickListener {
+                    item.link?.let(onclick)
                 }
             }
         }

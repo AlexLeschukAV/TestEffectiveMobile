@@ -18,7 +18,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="184dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="160dp"
         android:backgroundTint="@color/cardview_background"
@@ -35,6 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:ellipsize="end"
+                android:lines="1"
                 android:text="@string/find_work"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -74,6 +76,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:lines="1"
                     android:text="@string/enter_in_password"
                     android:textColor="#2B7EFE"
                     android:textSize="14sp" />
@@ -100,6 +104,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:ellipsize="end"
+                android:lines="1"
                 android:text="@string/search_text"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
@@ -107,6 +113,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
                 android:text="@string/vacancy_text"
                 android:textColor="@color/white"
                 android:textSize="14sp" />

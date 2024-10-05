@@ -18,9 +18,9 @@ class FindOffersViewModel @Inject constructor(
     private val addVacanciesUseCase: AddVacanciesUseCase,
 ) : BaseViewModel<State, Action, Effect>() {
 
-    init {
-        getOffers()
-    }
+//    init {
+//        getOffers()
+//    }
 
     private fun getOffers() {
         viewModelScope.launch {
@@ -56,6 +56,7 @@ class FindOffersViewModel @Inject constructor(
             is Action.OnClickLike -> setLike(action.id)
             is Action.AddVacancies -> addVacancies(action.list)
             Action.OnShowAllVacancy -> showAllVacancy()
+            Action.GetOffers -> getOffers()
         }
     }
 }

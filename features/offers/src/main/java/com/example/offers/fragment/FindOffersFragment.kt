@@ -1,18 +1,17 @@
 package com.example.offers.fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.base.BaseFragment
-import com.example.base.BottomNavigationViewSource
-import com.example.base.adapters.VacanciesAdapter
-import com.example.base.ui.RespondDialog.Companion.showRespondDialog
-import com.example.base.utils.NavigationData
+import com.example.common.adapters.VacanciesAdapter
+import com.example.common.ui.RespondDialog.Companion.showRespondDialog
 import com.example.find_offers.databinding.FragmentFindOffersBinding
 import com.example.offers.adapter.OffersAdapter
 import com.example.offers.contract.OffersContract.Action
@@ -26,23 +25,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action, Effect>() {
 
     private val viewModel: FindOffersViewModel by viewModels()
-    private lateinit var bottomNavigationDataObserver: Observer<NavigationData>
-    private val offersAdapter: OffersAdapter by lazy { OffersAdapter() }
-    private val vacanciesAdapter: VacanciesAdapter by lazy {
-        VacanciesAdapter(
-            onClickLike = {
-                viewModel.setAction(Action.OnClickLike(it))
-            },
-            onClickVacancy = {
-                findNavController().navigate(
-                    FindOffersFragmentDirections.actionFindOffersFragmentToViewVacancyFragment(it)
-                )
-            },
-            onClickButton = {
-                showRespondDialog(it) {}
-            }
-        )
-    }
+    private val offersAdapter: OffersAdapter by lazy { createOffersAdapter() }
+    private val vacanciesAdapter: VacanciesAdapter by lazy { createVacanciesAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,7 +50,10 @@ class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action
     @SuppressLint("SetTextI18n")
     override fun render(state: State) {
         with(state) {
-            if (isLoading) binding.progressBar.show() else binding.progressBar.hide()
+            if (isLoading) {
+                binding.progressBar.show()
+                viewModel.setAction(Action.GetOffers)
+            } else binding.progressBar.hide()
             offers?.let {
                 offersAdapter.submitList(it.offers)
                 if (it.showAllVacancy) {
@@ -74,7 +61,7 @@ class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action
                 } else {
                     vacanciesAdapter.submitList(it.vacancies.take(3))
                     binding.buttonAddVacancies.show()
-                    binding.buttonAddVacancies.text = "Ещё ${it.vacancies.size - 3} вакансий"
+                    binding.buttonAddVacancies.text = "Ещё ${it.vacancies.size - 3} вакансии"
                 }
 
             }
@@ -97,18 +84,32 @@ class FindOffersFragment : BaseFragment<FragmentFindOffersBinding, State, Action
         }
     }
 
-    private fun createBadge(n: Int) {
-        bottomNavigationDataObserver = Observer { navData ->
-            val menuItem = navData.menuItem
-            val badge = navData.bottomNavigationView?.getOrCreateBadge(menuItem)
-            if (n > 0) {
-                badge?.isVisible = true
-                badge?.number = n
-            } else badge?.isVisible = false
-        }
-        BottomNavigationViewSource.instance.observe(
-            viewLifecycleOwner,
-            bottomNavigationDataObserver
+    private fun createVacanciesAdapter(): VacanciesAdapter {
+        return VacanciesAdapter(
+            onClickLike = { vacancy ->
+                viewModel.setAction(Action.OnClickLike(vacancy))
+            },
+            onClickVacancy = { vacancy ->
+                findNavController().navigate(
+                    FindOffersFragmentDirections.actionFindOffersFragmentToViewVacancyFragment(
+                        vacancy
+                    )
+                )
+            },
+            onClickButton = { vacancy ->
+                showRespondDialog(vacancy) {}
+            }
+        )
+    }
+
+    private fun createOffersAdapter(): OffersAdapter {
+        return OffersAdapter(
+            onClick = { link ->
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    data = Uri.parse(link)
+                }
+                requireContext().startActivity(intent)
+            }
         )
     }
 }

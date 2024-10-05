@@ -40,6 +40,7 @@ android {
 dependencies {
     implementation(project(":features:offers"))
     implementation(project(":core:base"))
+    implementation(project(":core:common"))
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")

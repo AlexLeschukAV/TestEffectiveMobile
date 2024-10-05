@@ -43,6 +43,7 @@ android {
 
 dependencies {
     implementation(project(":core:base"))
+    implementation(project(":core:common"))
     implementation(project(":domain:api"))
     implementation(project(":domain:impl"))
     implementation(project(":data:impl"))

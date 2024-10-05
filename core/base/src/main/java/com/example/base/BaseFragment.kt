@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
+import com.example.common.BottomNavigationViewSource
+import com.example.common.utils.NavigationData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.launch
@@ -27,8 +30,7 @@ abstract class BaseFragment<VB : ViewBinding, S : MviState, A : MviAction, E : M
 
     private var _binding: VB? = null
     protected val binding get() = _binding!!
-
-    protected val toolbarTitle: String? = null
+    private lateinit var bottomNavigationDataObserver: Observer<NavigationData>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,10 +38,6 @@ abstract class BaseFragment<VB : ViewBinding, S : MviState, A : MviAction, E : M
         savedInstanceState: Bundle?,
     ): View {
         _binding = createBindingInstance(inflater, container)
-        toolbarTitle?.let {
-            activity?.title = toolbarTitle
-            activity?.actionBar?.title = toolbarTitle
-        }
         return binding.root
     }
 
@@ -81,6 +79,21 @@ abstract class BaseFragment<VB : ViewBinding, S : MviState, A : MviAction, E : M
                 flow.collect(collector)
             }
         }
+    }
+
+    protected fun createBadge(n: Int) {
+        bottomNavigationDataObserver = Observer { navData ->
+            val menuItem = navData.menuItem
+            val badge = navData.bottomNavigationView?.getOrCreateBadge(menuItem)
+            if (n > 0) {
+                badge?.isVisible = true
+                badge?.number = n
+            } else badge?.isVisible = false
+        }
+        BottomNavigationViewSource.instance.observe(
+            viewLifecycleOwner,
+            bottomNavigationDataObserver
+        )
     }
 
     @Suppress("UNCHECKED_CAST")
