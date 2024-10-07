@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/em"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TestEffectiveMobile"
+        android:theme="@style/Theme.TestHeadHunter"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"

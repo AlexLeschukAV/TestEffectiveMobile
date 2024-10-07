@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TestEffectiveMobile"
+rootProject.name = "TestHeadHunter"
 include(":app")
 include(":domain")
 include(":domain:models")

@@ -1,4 +1,4 @@
-package com.example.testeffectivemobile.di
+package com.example.testheadhunter.di
 
 import com.example.api.OffersRepository
 import com.example.impl.repository.OffersRepositoryImpl

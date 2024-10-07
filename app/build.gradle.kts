@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.testeffectivemobile"
+    namespace = "com.example.testheadhunter"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.testeffectivemobile"
+        applicationId = "com.example.testheadhunter"
         minSdk = 29
         targetSdk = 34
         versionCode = 1

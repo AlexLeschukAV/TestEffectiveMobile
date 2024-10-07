@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.TestEffectiveMobile" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.TestHeadHunter" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Убираем статус-бар -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -13,7 +13,7 @@
 
     </style>
 
-    <style name="Theme.TestEffectiveMobile" parent="Base.Theme.TestEffectiveMobile" />
+    <style name="Theme.TestHeadHunter" parent="Base.Theme.TestHeadHunter" />
 
     <style name="TextAppearance.CustomBottomNavigationView" parent="TextAppearance.AppCompat.Caption">
         <item name="android:textColor">@color/white</item>

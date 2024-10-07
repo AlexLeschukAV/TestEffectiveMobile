@@ -1,4 +1,4 @@
-package com.example.testeffectivemobile.di
+package com.example.testheadhunter.di
 
 import com.example.api.usecase.AddVacanciesUseCase
 import com.example.api.usecase.GetAllFavoriteVacancyUseCase

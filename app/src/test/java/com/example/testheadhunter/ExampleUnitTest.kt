@@ -1,4 +1,4 @@
-package com.example.testeffectivemobile
+package com.example.testheadhunter
 
 import org.junit.Test
 

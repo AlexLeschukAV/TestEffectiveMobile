@@ -1,4 +1,4 @@
-package com.example.testeffectivemobile
+package com.example.testheadhunter
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

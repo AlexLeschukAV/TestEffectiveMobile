@@ -1,4 +1,4 @@
-package com.example.testeffectivemobile
+package com.example.testheadhunter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
